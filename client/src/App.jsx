@@ -12,28 +12,17 @@ import PrivateRoutes from "./util/PrivateRoutes";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(false);
 
-  const login = useCallback(() => {
+  const login = useCallback((uid) => {
     setIsLoggedIn(true);
+    setUserId(uid);
   }, []);
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
+    setUserId(null);
   }, []);
-
-  // let routes;
-
-  // if(isLoggedIn) {
-  //   routes = ();
-  // } else {
-  //   routes = (
-  //     <>
-  //     <Route path="/" element={<Users />} exact />
-  //     <Route path="/:userId/places" element={<UserPlaces />} />
-  //     <Route path="/auth" element={<Auth />} />
-  //     </>
-  //   )
-  // }
 
   return (
     <AuthContext.Provider
@@ -41,6 +30,7 @@ function App() {
         isLoggedIn,
         login,
         logout,
+        userId,
       }}
     >
       <MainNavigation />
