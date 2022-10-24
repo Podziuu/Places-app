@@ -1,5 +1,6 @@
 import express from "express";
 import { check } from "express-validator";
+import  checkAuth from "../middleware/check-auth.js";
 
 import {
   createPlace,
@@ -15,6 +16,8 @@ const router = express.Router();
 router.get("/:pid", getPlaceById);
 
 router.get("/user/:uid", getPlacesByUserId);
+
+router.use(checkAuth);
 
 router.post(
   "/",

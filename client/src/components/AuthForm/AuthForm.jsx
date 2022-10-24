@@ -53,7 +53,7 @@ const AuthForm = () => {
           }
         );
 
-        auth.login(data.user.id);
+        auth.login(data.userId, data.token);
         navigate("/");
       } catch (err) {}
     } else {
@@ -69,7 +69,8 @@ const AuthForm = () => {
           formData
         );
 
-        auth.login(data.user.id);
+        console.log('witam')
+        auth.login(data.userId, data.token);
         navigate("/");
       } catch (err) {}
     }

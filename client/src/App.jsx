@@ -1,4 +1,3 @@
-import { useState, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import NewPlacePage from "./pages/NewPlacePage";
@@ -9,25 +8,16 @@ import UpdatePlacePage from "./pages/UpdatePlacePage";
 import Auth from "./pages/Auth";
 import { AuthContext } from "./context/auth-context";
 import PrivateRoutes from "./util/PrivateRoutes";
+import { useAuth } from "./hooks/auth-hook";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(false);
-
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true);
-    setUserId(uid);
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
-  }, []);
+  const { token, login, logout, userId } = useAuth();
 
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn,
+        isLoggedIn: !!token,
+        token,
         login,
         logout,
         userId,

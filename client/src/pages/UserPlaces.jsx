@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useHttpClient } from "../hooks/http-hook";
 import PlaceList from "../components/PlaceList/PlaceList";
@@ -9,6 +9,7 @@ import LoadingSpinner from "../components/UI/LoadingSpinnder";
 const UserPlaces = () => {
   const params = useParams();
   const userId = params.userId;
+  const navigate = useNavigate()
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [places, setPlaces] = useState();
 
@@ -29,9 +30,14 @@ const UserPlaces = () => {
     setPlaces((prev) => prev.filter((place) => place.id !== deletedPlaceId))
   }
 
+  const clickHadnler = () => {
+    clearError();
+    navigate('/')
+  }
+
   return (
     <>
-      <ErrorModal error={error} onClear={clearError} />
+      <ErrorModal error={error} onClear={clickHadnler} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
