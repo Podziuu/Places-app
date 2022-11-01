@@ -12,7 +12,8 @@ import { useAuth } from "./hooks/auth-hook";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
-
+  console.log(import.meta.env.VITE_GOOGLE_API_KEY)
+  console.log(import.meta.env.BACKEND_URL)
   return (
     <AuthContext.Provider
       value={{

@@ -42,7 +42,7 @@ const AuthForm = () => {
     if (isLoginMode) {
       try {
         const data = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          import.meta.env.VITE_BACKEND_URL + "/users/login",
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -64,7 +64,7 @@ const AuthForm = () => {
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
         const data = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          import.meta.env.VITE_BACKEND_URL + "/users/signup",
           "POST",
           formData
         );
