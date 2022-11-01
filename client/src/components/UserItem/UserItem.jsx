@@ -6,8 +6,6 @@ import Card from "../UI/Card";
 import "./UserItem.css";
 
 const UserItem = (props) => {
-
-  console.log(import.meta.env.VITE_ASSET_URL)
   return (
     <li className="user-item">
       <Card className="user-item__content">
